@@ -50,7 +50,7 @@ body {
     padding: 0;
     margin: 0;
     /* background */
-    background: url("bg1.jpg") no-repeat;
+    background: url("bg.jpg") no-repeat;
     background-position: center;
     background-size: cover;
 }
