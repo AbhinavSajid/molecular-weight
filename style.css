@@ -63,6 +63,7 @@ body {
 
 
 .wrapper {
+    align-items: center;
     width: 100%;
     max-width: 90vw;
     background: transparent;
