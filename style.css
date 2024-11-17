@@ -49,7 +49,7 @@ body {
     padding: 0;
     margin: 0;
     /* background */
-    background: url("bg.jpg") no-repeat;
+    background: url("bg1.jpg") no-repeat;
     background-position: center;
     background-size: cover;
 }
@@ -60,12 +60,9 @@ body {
     padding-bottom: 2vh;
 }
 
-
-
 .wrapper {
-    align-items: center;
+
     width: 100%;
-    max-width: 90vw;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 20px;
