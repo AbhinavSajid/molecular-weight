@@ -7,6 +7,7 @@
 #molecule {
     height: 5vh;
     width: 21ch;
+    max-width: 80vw;
     border-radius: 7px;
     padding-left: 2%;
     font-size: larger;
@@ -58,10 +59,12 @@ body {
 }
 
 .wrapper {
+    max-width: 90vw;
 
-    width: 100%;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 20px;
     backdrop-filter: blur(20px);
+    margin: 0 auto; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
