@@ -51,7 +51,7 @@ body {
     background-position: center;
     padding: 0;
     margin: 0;
-    height: 100%;
+    height: 100vh;
 }
 
 .result {
@@ -61,8 +61,8 @@ body {
 
 
 .wrapper {
-    padding-right: 5;
-    padding-left: 5;
+    padding-right: 5px;
+    padding-left: 5px;
     align-items: center;
     width: 100%;
     height: 240px;
