@@ -1,4 +1,4 @@
-// molecular weights of common elements in g/mol
+// molecular weights of the elements in g/mol
 let atomicWeights = {};
 
 // load data from json
@@ -28,8 +28,9 @@ function formatSubscript(input) {
 function writeMolecularWeight() {
     let molecule = document.getElementById("molecule").value.trim().replace(/\s/g,'');
     const resultDiv = document.getElementById("result");
+
     if (molecule === "") {
-        resultDiv.textContent = "Please enter a valid molecule.";
+        resultDiv.textContent = "Please enter a molecule.";
         return;
     }
 
@@ -38,7 +39,7 @@ function writeMolecularWeight() {
         const molecularWeight = output[0];
         const formula = output[1]
         resultDiv.textContent = 
-        `Molecular Weight of ${formatSubscript(formula)}: ${molecularWeight.toFixed(3)} g/mol`;
+        `Molecular Weight of ${formatSubscript(formula)} is ${(molecularWeight).toFixed(4)} g/mol`;
     } catch (error) {
         resultDiv.textContent = error.message;
     }
@@ -49,9 +50,19 @@ function computeWeight(molecule) {
     let i = 0;
     let totalWeight = 0;
     let formula = "";
+    let brackets = false;
+    let bracketWeight = 0;
+
     while (i < molecule.length) {
         let n = "";
         let element = molecule[i];
+
+        if (element === "(") {
+            formula += element;
+            brackets = true;
+            i += 1;
+            continue;
+        }
 
         if (i != molecule.length - 1) {
             // if element is lowercase
@@ -75,6 +86,13 @@ function computeWeight(molecule) {
         
         i += 1;
         
+        if (element === ")") {
+            brackets = false;
+            totalWeight += bracketWeight * n;
+            bracketWeight = 0;
+            i += 1;
+        }
+
         element = element[0].toUpperCase() + element.slice(1);
         if (n != 1) {
             formula += element + String(n);
@@ -83,11 +101,16 @@ function computeWeight(molecule) {
         }
 
         if (element in atomicWeights){
-            totalWeight += atomicWeights[element] * n;
-        } else {
+            if (brackets === true) {
+                bracketWeight +=  atomicWeights[element] * n
+            } else {
+                totalWeight += atomicWeights[element] * n;
+            }
+            console.log(element, n,"*", atomicWeights[element], atomicWeights[element] * n);
+        } else if (!(element === "(" | element === ")")) {
             throw new Error(`Unknown element: ${element}`);
         }
-        console.log(element, n,"*", atomicWeights[element], atomicWeights[element] * n);
+        
     }
     return [totalWeight, formula];
 }
